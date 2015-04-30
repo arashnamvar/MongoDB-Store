@@ -1,0 +1,40 @@
+<span ng-controller = 'customersController'>
+	<span class='error'ng-if="errors">{{errors}}</span>
+	<div class="row">
+		<div class="twelve columns">
+		</div>
+	</div>	
+	<div class="row">
+		<h1 class="twelve columns">Add a new customer</h1>
+	</div>
+	<div class="row">
+		<h5 class="three columns input-fields-small">Customer Name:</h5>
+		<form  ng-submit="addCustomer()">
+			<input ng-model="newCustomer.name" class="seven columns u-full-width input-fields-small"  type="text">
+			<input class="two columns u-full-width input-fields-small" type="submit" value="add">
+		</form>
+	</div>
+	<div class="row">
+		<div  class="twelve columns">
+			<input class="input-fields" type="text" placeholder="search name..." ng-model="customersfilter">
+		</div>
+	</div>
+	<div class="row">
+		<table class="customer-table u-full-width">
+		  <thead>
+		    <tr>
+		      <th ng-click="predicate = 'name'; reverse=!reverse" >Customer Name</th>
+		      <th ng-click="predicate = 'created_date'; reverse=!reverse">Created Date</th>
+		      <th>Actions</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr ng-repeat='customer in customers | filter:customersfilter | orderBy: predicate:!reverse'>
+		      <td>{{customer.name}}</td>
+		      <td>{{customer.created_date | date :'longDate' }}</td>
+		      <td><a href="" ng-click="removeCustomer(customer._id)">Remove</a></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+</span>

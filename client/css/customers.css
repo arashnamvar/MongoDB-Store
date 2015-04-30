@@ -1,0 +1,23 @@
+.top-links {
+	margin-top: 2%;
+}
+
+.customer-table {
+	margin-top: 2%;
+}
+
+.input-fields {
+	margin: 2% 0;
+}
+
+.input-fields-small {
+	margin: .5% 1%;
+}
+
+.errors {
+	background-color: red;
+	color: white;
+	width: 100%;
+	margin:0;
+	padding: 0;
+}

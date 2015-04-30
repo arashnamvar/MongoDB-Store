@@ -1,0 +1,43 @@
+<div ng-controller = 'productsController' >
+	<span class='error'ng-if="errors">{{errors}}</span>
+	<div class="row">
+		<div class="four columns">
+			<form class='searchform'>
+				<input class='u-full-width'type="text" placeholder='search...' ng-model="productfilter" ng-model-options="{ updateOn: 'submit' , updateOn : 'blur'  }">
+				<input class="u-full-width searchformbutton" type="submit" value="filter">
+			</form>
+			<h5 class="addproduct">Add a new product</h5>
+			<form ng-submit="addProduct()">
+				<label for="name">Name:</label>
+				<input ng-model = 'newProduct.name'class='u-full-width' type="text" name="name" placeholder="name...">
+				<label for="name">img (url):</label>
+				<input ng-model = 'newProduct.img_url' class='u-full-width' type="text" name="url">
+				<label for="description">Description:</label>
+				<textarea ng-model = 'newProduct.description' class='u-full-width' name="description"></textarea>
+				<label for="quantity">Initial Quantity:</label>
+				<select ng-model = 'newProduct.quantity' class="u-full-width" name="quantity">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+				</select>
+				<input class='searchform u-full-width button-primary' type="submit" value="Create">
+			</form>
+		</div>
+		<div class="eight columns right-content">
+			<div ng-repeat="product in products | filter: productfilter | limitTo:quantity" class="img-container">
+				<div class="img" ng-style="{'background-image':'url({{product.image}})'}"></div>
+				<span class='pname'>{{product.product_name}}</span>
+				<span class='quantity'>({{product.int_quantity}} Left)</span>
+			</div>
+			<button ng-if='products.length > 16 'ng-click='showMore()' class="button">Display More</button>
+		</div>
+	</div>
+</div>

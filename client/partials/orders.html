@@ -1,0 +1,51 @@
+<div ng-controller = "ordersController">
+	<span class='error'ng-if="errors">{{errors}}</span>
+	<div class="row">
+		<h1 class="twelve columns">Add a new Order</h1>
+	</div>
+		<form ng-submit="addOrder()">
+			<div class="row">
+				<h5 class="three columns input-fields-small">Customer:</h5>
+				<select ng-model="newOrder.customer_name" class="three columns u-full-width input-fields-small">
+					<option ng-repeat="customer in customers">{{customer.name}}</option>
+				</select>
+			</div>
+			<div class="row">
+				<h5 class="three columns input-fields-small">Order:</h5>
+				<select ng-model="newOrder.quantity" class="three columns u-full-width input-fields-small">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select>
+				<select ng-model="newOrder.product" class="three columns u-full-width input-fields-small">
+					<option ng-repeat="product in products">{{product.product_name}}</option>
+				</select>
+				<input class="three columns u-full-width input-fields-small" type="submit" value="Order">
+			</div>	
+		</form>
+	<div class="row">
+		<div  class="twelve columns">
+			<input class="filter" type="text" placeholder="filter..." ng-model="orderFilter">
+		</div>
+	</div>
+	<div class="row">
+		<table class="customer-table u-full-width">
+		  <thead>
+		    <tr>
+		      <th>Customer Name</th>
+		      <th>Product</th>
+		      <th>Quantity</th>
+		      <th>Date</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr ng-repeat='order in orders | filter:orderFilter'>
+		      <td>{{order.customer_name}}</td>
+		      <td>{{order.product}}</td>
+		      <td>{{order.quantity}}</td>
+		      <td>{{order.created_date | date: 'longDate' }}</td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
+</div>

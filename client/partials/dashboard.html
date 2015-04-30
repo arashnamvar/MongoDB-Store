@@ -1,0 +1,13 @@
+<div ng-controller='dashboardController'>
+	<span class='error'ng-if="errors">{{errors}}</span>
+	<div>
+		<h2 class="title-dash">Last 3 customers</h2>
+		<ul class="dash">
+			<li ng-repeat='customer in three_customers' >{{customer.name}} joined the store ({{time_mil(mil_now - customer.created_date_mil)}})</li>
+		</ul>
+		<h2 class="title-dash">Last 3 Orders</h2>
+		<ul class="dash">
+			<li ng-repeat='order in three_orders'>{{order.customer_name}} purchased {{order.quantity}} {{order.product}}<span ng-if="order.quantity >1">s</span> ({{time_mil(mil_now - order.created_date_mil)}})</li>
+		</ul>
+	</div>
+</div>
